@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
     for (int64_t source : A) {
       operations += std::abs(target - source);
     }
-    std::cout << operations << std::endl;
+    std::cout << operations << "\n";
   }
   return 0;
 }
