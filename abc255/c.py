@@ -11,14 +11,15 @@ from typing import List
 params: List[int] = list(map(int, sys.stdin.readline().split(' ')))
 [X, A, D, N] = params
 
-def solve(start: int, end: int, vv1, vv2) -> int:
+def solve(start: int, end: int) -> int:
+    if 1 < abs(end - start) < 100:
+        U = [A + (D * i) for i in range(start, end)]
+        return min(map(lambda v: abs(v - X), U))
     v1 = abs(A + (D * start) - X)
     v2 = abs(A + (D * end) - X)
-    if v1 == vv1 and v2 == vv2:
-        return min([v1, v2])
     if v1 < v2:
-        return solve(start, start + math.ceil((end - start) / 2), v1, v2)
+        return solve(start, start + math.ceil((end - start) / 2))
     else:
-        return solve(start + math.ceil((end - start) / 2), end, v1, v2)
+        return solve(start + math.ceil((end - start) / 2), end)
 
-print(solve(0, N, N + 1, N + 1))
+print(solve(0, N))
