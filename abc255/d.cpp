@@ -1,5 +1,6 @@
 #include <cstdint>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -16,6 +17,7 @@ int main(int argc, char *argv[]) {
     std::cin >> at;
     A.emplace_back(at);
   }
+  std::stringstream buf;
   for (int i = 0; i < Q; i++) {
     int64_t target;
     std::cin >> target;
@@ -23,7 +25,8 @@ int main(int argc, char *argv[]) {
     for (int64_t source : A) {
       operations += std::abs(target - source);
     }
-    std::cout << operations << "\n";
+    buf << operations << "\n";
   }
+  std::cout << buf.str();
   return 0;
 }
