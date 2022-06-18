@@ -4,6 +4,8 @@
 #include <vector>
 
 int main(int argc, char *argv[]) {
+  std::ios::sync_with_stdio(false);
+  std::cin.tie(0);
   int64_t N, Q;
   std::cin >> N;
   std::cin >> Q;
