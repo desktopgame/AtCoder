@@ -12,8 +12,12 @@ params: List[int] = list(map(int, sys.stdin.readline().split(' ')))
 [X, A, D, N] = params
 
 def solve(start: int, end: int) -> int:
-    if 1 < abs(end - start) < 100:
+    s = abs(end - start)
+    if 1 < s < 100:
         U = [A + (D * i) for i in range(start, end)]
+        return min(map(lambda v: abs(v - X), U))
+    elif s <= 1:
+        U = [A + (D * start), A + (D * end)]
         return min(map(lambda v: abs(v - X), U))
     v1 = abs(A + (D * start) - X)
     v2 = abs(A + (D * end) - X)
