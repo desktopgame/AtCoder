@@ -16,6 +16,7 @@ for index, i in enumerate(A):
     table.append(table[index] + A[index])
 for i in range(0, Q):
     x = int(sys.stdin.readline())
+    # A[k] < X[i] < A[k+1] となるような K を見つける
     K = bisect.bisect_left(A, x)
     # シグマ (X[i] - A[j]), (A[j] - X[i]) の計算
     w1 = K * x - table[K]
