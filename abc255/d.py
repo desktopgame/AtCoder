@@ -31,6 +31,6 @@ for i in range(0, Q):
     x = int(sys.stdin.readline())
     K = bisect(x, 0, N - 1)
     # シグマ (X[i] - A[j]), (A[j] - X[i]) の計算
-    w1 = sum(map(lambda j: x - A[j], range(0, K)))
-    w2 = sum(map(lambda j: A[j] - x, range(K, N)))
+    w1 = K * x - sum([A[j] for j in range(0, K)])
+    w2 = -((N - K) * x) + sum([A[j] for j in range(K, N)])
     print(w1 + w2)
