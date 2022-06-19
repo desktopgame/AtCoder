@@ -36,5 +36,5 @@ for i in range(0, Q):
     K = bisect(x, 0, N - 1)
     # シグマ (X[i] - A[j]), (A[j] - X[i]) の計算
     w1 = K * x - table[K]
-    w2 = -((N - K) * x) + sum([A[j] for j in range(K, N)])
+    w2 = -((N - K) * x) + table[N] - table[K]
     print(w1 + w2)
