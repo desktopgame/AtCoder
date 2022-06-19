@@ -27,10 +27,14 @@ def bisect(x: int, start: int, end: int) -> int:
         return bisect(x, start + math.ceil((end - start) / 2), end)
 
 A.sort()
+# ループのたびにシグマを計算するとコストがかかるので累積和として持っておく
+table: List[int] = [0]
+for index, i in enumerate(A):
+    table.append(table[index] + A[index])
 for i in range(0, Q):
     x = int(sys.stdin.readline())
     K = bisect(x, 0, N - 1)
     # シグマ (X[i] - A[j]), (A[j] - X[i]) の計算
-    w1 = K * x - sum([A[j] for j in range(0, K)])
+    w1 = K * x - table[K]
     w2 = -((N - K) * x) + sum([A[j] for j in range(K, N)])
     print(w1 + w2)
