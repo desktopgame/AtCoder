@@ -24,10 +24,26 @@ def dfs(ij: int):
         if test():
             ans += 1
         return
+    loop_exit = True
     for n in range(0, 30):
         # 制約で値は1~30と決まっている
-        table[i][j] = n + 1
-        dfs(ij + 1)
+        if i == 2:
+            n = W[j] - table[0][j] - table[1][j]
+        elif j == 2:
+            n = H[i] - table[i][0] - table[i][1]
+        else:
+            n = n + 1
+            loop_exit = False
+        # 残り一つの値がマイナスだったら制約を満たしていないので次へ
+        if n > 0:
+            # table[i][j] が n の時の他のあらゆる要素の組み合わせを確認する
+            table[i][j] = n
+            dfs(ij + 1)
+        else:
+            break
+        # 一意に決まった値なら他の値を試す必要はない
+        if loop_exit:
+            break
 
 def test() -> bool:
     for i, row in enumerate(table):
