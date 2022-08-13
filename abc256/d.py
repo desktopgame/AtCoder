@@ -19,14 +19,18 @@ def withInRange(a: List[int], b: List[int]) -> bool:
     return b[0] >= a[0] and b[0] <= a[1]
 
 index: int = 0
-while index < len(LR) - 1:
-    s1 = LR[index]
-    s2 = LR[index + 1]
+offset: int = 0
+while offset + index < len(LR) - 1:
+    s1 = LR[offset + index]
+    s2 = LR[offset + index + 1]
     if withInRange(s1, s2):
-        s1[1] = max(s1[1], s2[1])
-        del LR[index + 1]
+        # s1[1] = max(s1[1], s2[1])
+        # del LR[index + 1]
+        s2[0] = s1[0]
+        s2[1] = max(s1[1], s2[1])
+        offset += 1
     else:
+        print(f'{LR[offset + index][0]} {LR[offset + index][1]}')
         index += 1
 
-for s in LR:
-    print(f'{s[0]} {s[1]}')
+print(f'{LR[offset + index][0]} {LR[offset + index][1]}')
